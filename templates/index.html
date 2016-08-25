@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>just Kasaiee :D</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage callback function." />
+    <meta name="keywords"  content="fullpage,jquery,demo,callbac,function,event" />
+    <meta name="Resource-type" content="Document" />
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fullpage/css/jquery.fullpage.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'fullpage/css/examples.css' %}" />
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'fullpage/js/jquery.fullpage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fullpage/js/examples.js' %}"></script>
+
+    <style>
+    {% for section in sections %}
+        #section{{forloop.counter0}}{
+            {% if section.backgroundImage %}
+                background-image: url({{ MEDIA_URL }}{{section.backgroundImage}});
+                {% if section.is_thumbnail %}
+                        background-size: contain;
+                        background-repeat: repeat;
+                {% else %}
+                    background-size: cover;
+                }
+                {% endif %}
+            {% endif %}
+        }
+        {% if not forloop.first %}
+        #section{{forloop.counter0}} img{
+            left: 130%;
+            position:relative;
+        }
+        {% endif %}
+        
+        #section{{forloop.counter0}} p{
+            {% if forloop.first %}
+            display:block;    
+            {% else %}
+            display:none;
+            {% endif %}
+
+        }
+    {% endfor %}
+    {{fullpage.extraStyleSheet}}
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                {% if fullpage.easingCss3 %}
+                easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)',               
+                {% endif %}
+
+                {% if fullpage.autoScrolling %}
+                autoScrolling: true,
+                {% else %}
+                autoScrolling: false,
+                {% endif %}
+                
+                {% if fullpage.fitToSection %}
+                fitToSection: true,
+                {% else %}
+                fitToSection: false,
+                {% endif %}
+
+                {% if fullpage.navigation %}
+                navigation: true,
+                navigationPosition: '{{fullpage.navigationPosition}}',
+                navigationTooltips: [
+                    {% for section in sections %}
+                        '{{section.name}}',
+                    {% endfor %}
+                ],
+                {% else %}
+                navigation: false,
+                {% endif %}
+
+                {% if fullpage.continuousVertical %}
+                continuousVertical: true,
+                {% else %}
+                continuousVertical: false,
+                {% endif %}
+
+                sectionsColor: [
+                {% for section in sections %}
+                    '{{section.color}}',
+                {% endfor %}
+                ],
+                anchors: [
+                    {% for section in sections %}
+                        '{{forloop.counter0}}',
+                    {% endfor %}
+                ],
+
+                menu: '#menu',
+
+                afterLoad: function(anchorLink, index){
+
+                    //section
+                {% for section in sections %}
+                    if(index == {{forloop.counter0}}){
+                        //moving the image
+                        $('#section{{forloop.counter0}}').find('img').delay(900).animate({
+                            left: '0%'
+                        }, 3000, 'easeOutExpo');
+
+                        $('#section{{forloop.counter0}}').find('p').first().fadeIn(2200, function(){
+                            $('#section{{forloop.counter0}}').find('p').last().fadeIn(1800);
+                        });;
+                    }
+                {% endfor %}
+                }
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+
+
+<ul id="menu">
+{% for section in sections %}
+    <li data-menuanchor="{{forloop.counter0}}">
+        <a href="#{{forloop.counter0}}">
+            {{section.name}}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+<div id="fullpage">
+    {% for section in sections %}
+        <div class="section" id="section{{forloop.counter0}}">
+            {% for slide in slides %}
+                {% if slide.section == section %}
+                    <div id="slide{{forloop.counter0}}" class="slide">
+                        {{slide.content|safe}}                   
+                    </div>
+                {% endif %}
+            {% endfor %}    
+        </div>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>
