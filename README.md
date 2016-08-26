@@ -7,8 +7,6 @@ django-fullpage is a django project that uses [fullpage.js](http://alvarotrigo.c
 ----------
 
 
-[toc]
-
 installation
 --------------------
 - requirements: install following packages via **pip** or **easy_install**
