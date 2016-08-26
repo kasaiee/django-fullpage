@@ -16,7 +16,7 @@ installation
  - [django-ckeditor 5.0.3](https://github.com/django-ckeditor/django-ckeditor)
 - Download Django-fullpage
 - Add it to your project directory
-- Add these to your **INSTALLED_APPS**
+- Edit project's **settings.py**
 ```
  INSTALLED_APPS = [
 ...
