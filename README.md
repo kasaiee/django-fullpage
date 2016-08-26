@@ -16,9 +16,9 @@ installation
  - django 1.10
  - [django-colorfield 0.1.10](https://github.com/jaredly/django-colorfield)
  - [django-ckeditor 5.0.3](https://github.com/django-ckeditor/django-ckeditor)
-- <i class="icon-download"></i> Download Django-fullpage
-- <i class="icon-folder-open"></i> Add it to your project directory
--  <i class="icon-cog"></i>Add these to your **INSTALLED_APPS**
+- Download Django-fullpage
+- Add it to your project directory
+- Add these to your **INSTALLED_APPS**
 ```
  INSTALLED_APPS = [
 ...
@@ -39,14 +39,14 @@ CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
 ```
-- <i class="icon-file"></i> Add following line to your **urlpatterns** in **urls.py** project
+- <i class="icon-file"></i> Add following line to your **urlpatterns** in project's **urls.py** 
 ```
 urlpatterns += [
     url(r'^', include('fullpage.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 ```
-- Create models via typing bellow commands in terminal or cmd
+- Create models via typing following commands in terminal or cmd
 ```
 $ python manage.py makemigrations fullpage
 $ python manage.py migrate fullpage
