@@ -56,10 +56,10 @@ $ python manage.py runserver
 
 > **Note:**
 
-> - Some settings are depends on your project. If you have any problem with installation of django-fullpage see wour wiki or ask us.
+> - Some settings are depend on your project. If you have any problem with installation of django-fullpage see our wiki or ask us.
 
 #### How me maked django-fullpage?
-I maked it to show my students How can i make a site via django in a short time? If you want to know how it maked you can see the learning movie at [aparat](http://www.aparat.com/v/WP0lU).
+I maked it to show my students How can I make a site via django in a short time? If you want to know how it maked you can see the learning movie at [aparat](http://www.aparat.com/v/WP0lU).
 
 
 #### Follow me
