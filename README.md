@@ -64,6 +64,6 @@ I maked it to show my students How can I make a site via django in a short time?
 
 #### Follow me
 - [Github](https://github.com/kasaiee)
-- [Telegran](https://telegram.me/pydeveloper2)
+- [Telegram](https://telegram.me/pydeveloper2)
 - [Aparat](http://www.aparat.com/kasaie)
 - [Linkedin](https://www.linkedin.com/in/kasaiee)
